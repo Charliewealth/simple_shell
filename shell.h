@@ -118,9 +118,9 @@ void find_cmd(info_t *);
 void fork_cmd(info_t *);
 
 /* toem_parser.c */
-int is_cmd(info_t *, char *);
+int _cmd(info_t *, char *);
 char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+char *get_path(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
@@ -166,12 +166,12 @@ int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
 
-/* toem_errors1.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+/* convert_string.c prototype */
+int is_erratoi(char *);
+void print_err(info_t *, char *);
+int print_dec(int, int);
+char *conv_numb(long int, int, int);
+void remov_comm(char *);
 
 /* toem_builtin.c */
 int _myexit(info_t *);
@@ -204,12 +204,12 @@ char **get_environ(info_t *);
 int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
-/* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+/* get_hist.c prototype */
+char *get_hist_file(info_t *info);
+int write_hist(info_t *info);
+int read_hist(info_t *info);
+int build_hist_list(info_t *info, char *buf, int numcount);
+int renum_hist(info_t *info);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
