@@ -125,7 +125,7 @@ char *get_path(info_t *, char *, char *);
 /* loophsh.c */
 int loophsh(char **);
 
-/* toem_errors.c */
+/* eputs.c */
 void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
@@ -157,8 +157,8 @@ char *_memset(char *, char, unsigned int);
 void ffree(char **);
 void *_realloc(void *, unsigned int, unsigned int);
 
-/* toem_memory.c */
-int bfree(void **);
+/* free_pointer.c */
+int freep(void **);
 
 /* toem_atoi.c */
 int interactive(info_t *);
@@ -178,8 +178,8 @@ int _myexit(info_t *);
 int _mycd(info_t *);
 int _myhelp(info_t *);
 
-/* toem_builtin1.c */
-int _myhistory(info_t *);
+/* history_list.c */
+int _history(info_t *);
 int _myalias(info_t *);
 
 /*toem_getline.c */
@@ -211,7 +211,7 @@ int read_hist(info_t *info);
 int build_hist_list(info_t *info, char *buf, int numcount);
 int renum_hist(info_t *info);
 
-/* toem_lists.c */
+/* add_node.c */
 list_t *add_node(list_t **, const char *, int);
 list_t *add_node_end(list_t **, const char *, int);
 size_t print_list_str(const list_t *);
@@ -225,7 +225,7 @@ size_t print_list(const list_t *);
 list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
-/* toem_vars.c */
+/* chain_decimeters.c */
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
 int replace_alias(info_t *);
