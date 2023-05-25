@@ -1,11 +1,10 @@
 #include "shell.h"
-
 /**
- * hsh - main shell loop
- * @info: the parameter & return info struct
- * @av: the argument vector from main()
+ * hsh - The is the main shell loop (just like bash)
+ * @info: The Parameter, and return info struct.
+ * @av: the arg vector from main().
  *
- * Return: 0 on success, 1 on error, or error code
+ * Return: 0 on success, and 1 on error or error code.
  */
 int hsh(info_t *info, char **av)
 {
@@ -21,17 +20,17 @@ int hsh(info_t *info, char **av)
 		r = get_input(info);
 		if (r != -1)
 		{
-			set_info(info, av);
+			reset_info(info, av);
 			builtin_ret = find_builtin(info);
 			if (builtin_ret == -1)
 				find_cmd(info);
 		}
 		else if (interactive(info))
 			_putchar('\n');
-		free_info(info, 0);
+		frees_info(info, 0);
 	}
-	write_history(info);
-	free_info(info, 1);
+	write_hist(info);
+	frees_info(info, 1);
 	if (!interactive(info) && info->status)
 		exit(info->status);
 	if (builtin_ret == -2)
@@ -42,15 +41,14 @@ int hsh(info_t *info, char **av)
 	}
 	return (builtin_ret);
 }
-
 /**
- * find_builtin - finds a builtin command
- * @info: the parameter & return info struct
+ * find_builtin - It locates builtin command.
+ * @info: The parameter and return info struct.
  *
- * Return: -1 if builtin not found,
- * 0 if builtin executed successfully,
- * 1 if builtin found but not successful,
- * 2 if builtin signals exit()
+ * Return: -1 when builtin is not found.
+ * 0 where builtin executed successfully.
+ * 1 where builtin found but not successful,
+ * 2 where builtin signals exit()
  */
 int find_builtin(info_t *info)
 {
@@ -59,11 +57,11 @@ int find_builtin(info_t *info)
 		{"exit", _myexit},
 		{"env", _myenv},
 		{"help", _myhelp},
-		{"history", _myhistory},
+		{"history", _history},
 		{"setenv", _mysetenv},
 		{"unsetenv", _myunsetenv},
 		{"cd", _mycd},
-		{"alias", _myalias},
+		{"alias", _mimicalias},
 		{NULL, NULL}
 	};
 
@@ -76,17 +74,16 @@ int find_builtin(info_t *info)
 		}
 	return (built_in_ret);
 }
-
 /**
- * find_cmd - finds a command in PATH
- * @info: the parameter & return info struct
+ * find_cmd - This code finds a command in Path.
+ * @info: the parameter, and return info struct.
  *
  * Return: void
  */
 void find_cmd(info_t *info)
 {
 	char *path = NULL;
-	int i, k;
+	int a, b;
 
 	info->path = info->argv[0];
 	if (info->linecount_flag == 1)
@@ -94,13 +91,13 @@ void find_cmd(info_t *info)
 		info->line_count++;
 		info->linecount_flag = 0;
 	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delim(info->arg[i], " \t\n"))
-			k++;
-	if (!k)
+	for (a = 0, b = 0; info->arg[a]; a++)
+		if (!is_delim(info->arg[a], " \t\n"))
+			b++;
+	if (!b)
 		return;
 
-	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -109,19 +106,19 @@ void find_cmd(info_t *info)
 	else
 	{
 		if ((interactive(info) || _getenv(info, "PATH=")
-					|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+					|| info->argv[0][0] == '/') && _cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
 		{
 			info->status = 127;
-			print_error(info, "not found\n");
+			print_err(info, "not found\n");
 		}
 	}
 }
 
 /**
- * fork_cmd - forks a an exec thread to run cmd
- * @info: the parameter & return info struct
+ * fork_cmd - It forks an exec. thread to run the cmd.
+ * @info: The parameter and return info struct.
  *
  * Return: void
  */
@@ -132,7 +129,6 @@ void fork_cmd(info_t *info)
 	child_pid = fork();
 	if (child_pid == -1)
 	{
-		/* TODO: PUT ERROR FUNCTION */
 		perror("Error:");
 		return;
 	}
@@ -145,7 +141,6 @@ void fork_cmd(info_t *info)
 				exit(126);
 			exit(1);
 		}
-		/* TODO: PUT ERROR FUNCTION */
 	}
 	else
 	{
@@ -154,8 +149,7 @@ void fork_cmd(info_t *info)
 		{
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
-				print_error(info, "Permission denied\n");
+				print_err(info, "Permission denied\n");
 		}
 	}
 }
-
