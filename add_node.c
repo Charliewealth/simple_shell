@@ -17,7 +17,7 @@ list_t *add_node(list_t **head, const char *str, int ind)
 	if (!new_head)
 		return (NULL);
 	_memset((void *)new_head, 0, sizeof(list_t));
-	new_head->ind = ind;
+	new_head->num = ind;
 	if (str)
 	{
 		new_head->str = _strdup(str);
@@ -52,7 +52,7 @@ list_t *add_node_end(list_t **head, const char *str, int ind)
 	if (!new_node)
 		return (NULL);
 	_memset((void *)new_node, 0, sizeof(list_t));
-	new_node->ind = ind;
+	new_node->num = ind;
 	if (str)
 	{
 		new_node->str = _strdup(str);
@@ -102,10 +102,10 @@ size_t print_list_str(const list_t *h)
 int delete_node_at_index(list_t **head, unsigned int ind)
 {
 	list_t *node, *prev_node;
-	unsigned int i = Z;
+	unsigned int i = 0;
 
 	if (!head || !*head)
-		return (Z);
+		return (0);
 
 	if (!ind)
 	{
@@ -113,7 +113,7 @@ int delete_node_at_index(list_t **head, unsigned int ind)
 		*head = (*head)->next;
 		free(node->str);
 		free(node);
-		return (Y);
+		return (0);
 	}
 	node = *head;
 	while (node)
@@ -123,13 +123,13 @@ int delete_node_at_index(list_t **head, unsigned int ind)
 			prev_node->next = node->next;
 			free(node->str);
 			free(node);
-			return (Y);
+			return (0);
 		}
 		i++;
 		prev_node = node;
 		node = node->next;
 	}
-	return (Z);
+	return (0);
 }
 /**
  * free_list - This frees all nodes of a list

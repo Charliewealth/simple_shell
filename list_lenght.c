@@ -1,32 +1,31 @@
 #include "shell.h"
 /**
- * list_len - determines length of linked list
- * @h: pointer to first node
+ * list_len - This code Determines linked list lenght
+ * @a: The pointer to the first node.
  *
- * Return: size of list
+ * Return: The size of the linked list
  */
-size_t list_len(const list_t *h)
+size_t list_len(const list_t *a)
 {
-	size_t i = 0;
+	size_t j = 0;
 
-	while (h)
+	while (a)
 	{
-		h = h->next;
-		i++;
+		a = a->next;
+		j++;
 	}
-	return (i);
+	return (j);
 }
-
 /**
- * list_to_strings - returns an array of strings of the list->str
- * @head: pointer to first node
+ * list_to_strings - It returns an Array of Strings of the list->str
+ * @head: The Pointer to the 1st node
  *
- * Return: array of strings
+ * Return: Array of strings
  */
 char **list_to_strings(list_t *head)
 {
 	list_t *node = head;
-	size_t i = list_len(head), j;
+	size_t i = list_len(head), y;
 	char **strs;
 	char *str;
 
@@ -40,8 +39,8 @@ char **list_to_strings(list_t *head)
 		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
-			for (j = 0; j < i; j++)
-				free(strs[j]);
+			for (j = 0; y < i; y++)
+				free(strs[y]);
 			free(strs);
 			return (NULL);
 		}
