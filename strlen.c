@@ -1,29 +1,28 @@
 #include "shell.h"
-
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
+ * _strlen - This code returns the string length.
+ * @s: The lenght of string to be checked.
  *
- * Return: integer length of string
+ * Return: the length of string (integer)
  */
 int _strlen(char *s)
 {
-	int i = 0;
+	int j = 0;
 
 	if (!s)
 		return (0);
 
 	while (*s++)
-		i++;
-	return (i);
+		j++;
+	return (j);
 }
 
 /**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * _strcmp - This code compares two strings lexicogarphically.
+ * @s1: The 1st strang
+ * @s2: The 2nd strang
  *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ * Return: -ve if s1 < s2, +ve if s1 > s2, zero if s1 == s2
  */
 int _strcmp(char *s1, char *s2)
 {
@@ -41,11 +40,11 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * starts_with - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * starts_with - It Checks whether needle starts with haystack
+ * @haystack: The string to be searched
+ * @needle: The substring to Find.
  *
- * Return: address of next char of haystack or NULL
+ * Return: Address of the next char of haystack or NULL
  */
 char *starts_with(const char *haystack, const char *needle)
 {

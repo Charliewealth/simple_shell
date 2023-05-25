@@ -13,7 +13,6 @@ int hsh(info_t *info, char **av)
 
 	while (r != -1 && builtin_ret != -2)
 	{
-		clear_info(info);
 		if (interactive(info))
 			_puts("$ ");
 		_eputchar(BUF_FLUSH);
@@ -97,7 +96,6 @@ void find_cmd(info_t *info)
 	if (!b)
 		return;
 
-	find_path(info, _getenv(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -136,7 +134,7 @@ void fork_cmd(info_t *info)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
-			free_info(info, 1);
+			frees_info(info, 1);
 			if (errno == EACCES)
 				exit(126);
 			exit(1);
