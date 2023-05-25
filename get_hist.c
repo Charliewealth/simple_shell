@@ -42,10 +42,10 @@ int write_hist(info_t *info)
 		return (-1);
 	for (node = info->history; node; node = node->next)
 	{
-		_putspd(node->str, pd);
-		_putpd('\n', pd);
+		_putsfd(node->str, pd);
+		_putfd('\n', pd);
 	}
-	_putpd(BUF_FLUSH, pd);
+	_putfd(BUF_FLUSH, pd);
 	close(pd);
 	return (1);
 }
@@ -85,16 +85,16 @@ int read_hist(info_t *info)
 		if (buf[j] == '\n')
 		{
 			buf[j] = 0;
-			build_history_list(info, buf + last, numcount++);
+			build_hist_list(info, buf + last, numcount++);
 			last = j + 1;
 		}
 	if (last != j)
-		build_history_list(info, buf + last, numcount++);
+		build_hist_list(info, buf + last, numcount++);
 	free(buf);
 	info->histcount = numcount;
-	while (infor->histcount-- >= HIST_MAX)
+	while (info->histcount-- >= HIST_MAX)
 		delete_node_at_index(&(info->history), 0);
-	renumber_history(info);
+	renum_hist(info);
 	return (info->histcount);
 }
 
