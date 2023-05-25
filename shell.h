@@ -180,7 +180,7 @@ int _myhelp(info_t *);
 
 /* history_list.c */
 int _history(info_t *);
-int _myalias(info_t *);
+int _mimicalias(info_t *);
 
 /*toem_getline.c */
 ssize_t get_input(info_t *);
@@ -192,12 +192,12 @@ void init_info(info_t *);
 void reset_info(info_t *, char **);
 void frees_info(info_t *, int);
 
-/* toem_environ.c */
+/* myenv.c */
 char *_getenv(info_t *, const char *);
 int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+int _setenv(info_t *);
+int _unsetenv(info_t *);
+int increase_env_list(info_t *);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
