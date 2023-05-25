@@ -1,9 +1,8 @@
 #include "shell.h"
-
 /**
- * get_environ - returns the string array copy of our environ
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * get_environ -It returns copy of the string array of our env.
+ * @info: The Structure that contains potential args Used to maintain
+ *          a constant function prototype.
  * Return: Always 0
  */
 char **get_environ(info_t *info)
@@ -16,18 +15,17 @@ char **get_environ(info_t *info)
 
 	return (info->environ);
 }
-
 /**
- * _unsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: 1 on delete, 0 otherwise
- * @var: the string env var property
+ * _unsetenv - This code removes an environ variable
+ * @info: The Structure that contains potential args Used to maintain
+ *        a constant function prototype.
+ *  Return: 1 on delete,and  0 otherwise
+ * @var: the string env variable property
  */
 int _unsetenv(info_t *info, char *var)
 {
 	list_t *node = info->env;
-	size_t i = 0;
+	size_t j = 0;
 	char *p;
 
 	if (!node || !var)
@@ -38,17 +36,16 @@ int _unsetenv(info_t *info, char *var)
 		p = starts_with(node->str, var);
 		if (p && *p == '=')
 		{
-			info->env_changed = delete_node_at_index(&(info->env), i);
-			i = 0;
+			info->env_changed = delete_node_at_index(&(info->env), j);
+			j = 0;
 			node = info->env;
 			continue;
 		}
 		node = node->next;
-		i++;
+		j++;
 	}
 	return (info->env_changed);
 }
-
 /**
  * _setenv - Initialize a new environment variable,
  *             or modify an existing one
@@ -91,4 +88,3 @@ int _setenv(info_t *info, char *var, char *value)
 	info->env_changed = 1;
 	return (0);
 }
-
