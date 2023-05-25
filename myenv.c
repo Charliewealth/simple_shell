@@ -11,13 +11,13 @@ int _myenv(info_t *info)
 	return (0);
 }
 /**
- * _getenv - It prints the value of environ variables.
+ * _mygetenv - It prints the value of environ variables.
  * @info: The Structure that contains potential args Used to maintain
  * @name: env variable name.
  *
  * Return: the value
  */
-char *_getenv(info_t *info, const char *name)
+char *_mygetenv(info_t *info, const char *name)
 {
 	list_t *node = info->env;
 	char *c;
@@ -32,13 +32,13 @@ char *_getenv(info_t *info, const char *name)
 	return (NULL);
 }
 /**
- * _setenv - It sets a new environment variable
+ * _mysetenv - It sets a new environment variable
  *             or modifies the existing one.
  * @info: The Structure that contains potential args Used to maintain
  *        a constant function prototype.
  *  Return: Always 0
  */
-int _setenv(info_t *info)
+int my_setenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
@@ -50,12 +50,12 @@ int _setenv(info_t *info)
 	return (1);
 }
 /**
- * _unsetenv - Remove an environment variable
+ * _myunsetenv - Remove an environment variable
  * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  * Return: Always 0
  */
-int _unsetenv(info_t *info)
+int _myunsetenv(info_t *info)
 {
 	int j;
 
