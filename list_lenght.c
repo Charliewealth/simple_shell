@@ -39,7 +39,7 @@ char **list_to_strings(list_t *head)
 		str = malloc(_strlen(node->str) + 1);
 		if (!str)
 		{
-			for (j = 0; y < i; y++)
+			for (y = 0; y < i; y++)
 				free(strs[y]);
 			free(strs);
 			return (NULL);
@@ -63,10 +63,10 @@ size_t print_list(const list_t *a)
 
 	while (a)
 	{
-		_puts(convert_number(a->num, 10, 0));
+		_puts(conv_numb(a->num, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_puts(h->str ? h->str : "(nil)");
+		_puts(a->str ? a->str : "(nil)");
 		_puts("\n");
 		a = a->next;
 		i++;
