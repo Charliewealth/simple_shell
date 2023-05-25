@@ -1,15 +1,14 @@
 #include "shell.h"
-
 /**
- * **strtow - splits a string into words. Repeat delimiters are ignored
- * @str: the input string
- * @d: the delimeter string
- * Return: a pointer to an array of strings, or NULL on failure
+ * **strtow - It splits a string into constituent words & ingnore Repeat delim
+ * @str: represents input string
+ * @d: represents the delimeter string
+ * Return: Pointer to an array of strings,and or NULL on failure
  */
 
 char **strtow(char *str, char *d)
 {
-	int i, j, k, m, numwords = 0;
+	int i, j, x, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
@@ -29,34 +28,33 @@ char **strtow(char *str, char *d)
 	{
 		while (is_delim(str[i], d))
 			i++;
-		k = 0;
-		while (!is_delim(str[i + k], d) && str[i + k])
-			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
+		x = 0;
+		while (!is_delim(str[i + x], d) && str[i + x])
+			x++;
+		s[j] = malloc((x + 1) * sizeof(char));
 		if (!s[j])
 		{
-			for (k = 0; k < j; k++)
-				free(s[k]);
+			for (x = 0; x < j; x++)
+				free(s[x]);
 			free(s);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
+		for (m = 0; m < x; m++)
 			s[j][m] = str[i++];
 		s[j][m] = 0;
 	}
 	s[j] = NULL;
 	return (s);
 }
-
 /**
- * **strtow2 - splits a string into words
- * @str: the input string
- * @d: the delimeter
- * Return: a pointer to an array of strings, or NULL on failure
+ * **strtow2 -this code splits a string into words
+ * @str: represents input string
+ * @d: represents the delimeter
+ * Return: A pointer to an array of strings,and or NULL on failure
  */
 char **strtow2(char *str, char d)
 {
-	int i, j, k, m, numwords = 0;
+	int i, j, x, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
@@ -74,22 +72,21 @@ char **strtow2(char *str, char d)
 	{
 		while (str[i] == d && str[i] != d)
 			i++;
-		k = 0;
-		while (str[i + k] != d && str[i + k] && str[i + k] != d)
-			k++;
-		s[j] = malloc((k + 1) * sizeof(char));
+		x = 0;
+		while (str[i + x] != d && str[i + x] && str[i + x] != d)
+			x++;
+		s[j] = malloc((x + 1) * sizeof(char));
 		if (!s[j])
 		{
-			for (k = 0; k < j; k++)
+			for (x = 0; x < j; x++)
 				free(s[k]);
 			free(s);
 			return (NULL);
 		}
-		for (m = 0; m < k; m++)
+		for (m = 0; m < x; m++)
 			s[j][m] = str[i++];
 		s[j][m] = 0;
 	}
 	s[j] = NULL;
 	return (s);
 }
-
