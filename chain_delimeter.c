@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * is_chain - this checks if current char in buffer is a chain delimeter
  * @info: this code indicates parameter struct
@@ -117,13 +116,13 @@ int replace_vars(info_t *info)
 		if (!_strcmp(info->argv[i], "$?"))
 		{
 			replace_string(&(info->argv[i]),
-					_strdup(convert_number(info->status, 10, 1)));
+					_strdup(conv_numb(info->status, 10, 1)));
 			continue;
 		}
 		if (!_strcmp(info->argv[i], "$$"))
 		{
 			replace_string(&(info->argv[i]),
-					_strdup(convert_number(getpid(), 10, 1)));
+					_strdup(conv_numb(getpid(), 10, 1)));
 			continue;
 		}
 		node = node_starts_with(info->env, &info->argv[i][2], '=');
