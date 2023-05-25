@@ -87,30 +87,30 @@ ssize_t get_input(info_t *info)
 	return (r);
 }
 /**
- * read_buf - reads a buffer
- * @info: parameter struct
- * @buf: buffer
- * @i: size
+ * read_buf - This code reads a Buffer.
+ * @info: The Parameter structure
+ * @buf: The Buffer
+ * @j: size of the buffer.
  *
  * Return: r
  */
-ssize_t read_buf(info_t *info, char *buf, size_t *i)
+ssize_t read_buf(info_t *info, char *buf, size_t *j)
 {
 	ssize_t r = 0;
 
-	if (*i)
+	if (*j)
 		return (0);
 	r = read(info->readfd, buf, READ_BUF_SIZE);
 	if (r >= 0)
-		*i = r;
+		*j = r;
 	return (r);
 }
 
 /**
- * _getline - gets the next line of input from STDIN
- * @info: parameter struct
- * @ptr: address of pointer to buffer, preallocated or NULL
- * @length: size of preallocated ptr buffer if not NULL
+ * _getline - This code gets the next line of Input from STDIN.
+ * @info: The Parameter structure.
+ * @ptr: The address of pointer to buffer (preallocated or NULL).
+ * @length: The size of preallocated ptr if not NULL
  *
  * Return: s
  */
@@ -135,7 +135,7 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	c = _strchr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_p = _realloc(p, s, s ? s + k : k + 1);
-	if (!new_p) /* MALLOC FAILURE! */
+	if (!new_p) /* here, malloc fails */
 		return (p ? free(p), -1 : -1);
 
 	if (s)
