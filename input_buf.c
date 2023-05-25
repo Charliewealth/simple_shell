@@ -152,10 +152,9 @@ int _getline(info_t *info, char **ptr, size_t *length)
 	*ptr = p;
 	return (s);
 }
-
 /**
- * sigintHandler - blocks ctrl-C
- * @sig_num: the signal number
+ * sigintHandler - This code blocks the ctrl-C command.
+ * @sig_num: The signal num.
  *
  * Return: void
  */
