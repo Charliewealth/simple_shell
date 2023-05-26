@@ -1,26 +1,25 @@
 #include "main.h"
-
 /**
- * cd_shell - changes current directory
+ * cd_shell - This code changes the current dir
  *
- * @datash: data relevant
- * Return: 1 on success
+ * @datash: The relevant data env.
+ * Return: 1 if successful
  */
 int cd_shell(data_shell *datash)
 {
 	char *dir;
-	int ishome, ishome2, isddash;
+	int emex, emex1, isemex;
 
 	dir = datash->args[1];
 
 	if (dir != NULL)
 	{
-		ishome = _strcmp("$HOME", dir);
-		ishome2 = _strcmp("~", dir);
-		isddash = _strcmp("--", dir);
+		emex = _strcmp("$HOME", dir);
+		emex1 = _strcmp("~", dir);
+		isemex = _strcmp("--", dir);
 	}
 
-	if (dir == NULL || !ishome || !ishome2 || !isddash)
+	if (dir == NULL || !emex || !emex1 || !isemex)
 	{
 		cd_to_home(datash);
 		return (1);

@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
- * is_cdir - checks ":" if is in the current directory.
- * @path: type char pointer char.
- * @i: type int pointer of index.
- * Return: 1 if the path is searchable in the cd, 0 otherwise.
+ * is_cdir - This code checks if the user is in pwd.
+ * @path: The charact pointer.
+ * @i: The type integer pointer of index.
+ * Return: 1 if cd can search the path, else 0.
  */
 int is_cdir(char *path, int *i)
 {
@@ -23,11 +22,11 @@ int is_cdir(char *path, int *i)
 }
 
 /**
- * _which - locates a command
+ * _which - It helps to locate a command.
  *
- * @cmd: command name
- * @_environ: environment variable
- * Return: location of the command.
+ * @cmd: The name of the command to be located.
+ * @_environ: The env variable.
+ * Return: The command location.
  */
 char *_which(char *cmd, char **_environ)
 {
@@ -71,11 +70,10 @@ char *_which(char *cmd, char **_environ)
 			return (cmd);
 	return (NULL);
 }
-
 /**
- * is_executable - determines if is an executable
- *
+ * is_executable - Shows whether a file is executable
  * @datash: data structure
+ *
  * Return: 0 if is not an executable, other number if it does
  */
 int is_executable(data_shell *datash)
