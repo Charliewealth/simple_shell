@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * strcat_cd - function that concatenates the message for cd error
+ * strcat_cd - This is the function that concatenates the message for cd error
  *
- * @datash: data relevant (directory)
- * @msg: message to print
- * @error: output message
- * @ver_str: counter lines
+ * @datash: This indicates data relevant (directory)
+ * @msg: this displays the message to print
+ * @error: This displays the output message
+ * @ver_str: This code counter lines
  * Return: error message
  */
 char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
@@ -39,8 +39,8 @@ char *strcat_cd(data_shell *datash, char *msg, char *error, char *ver_str)
 }
 
 /**
- * error_get_cd - error message for cd command in get_cd
- * @datash: data relevant (directory)
+ * error_get_cd - This code displays error message for cd command in get_cd
+ * @datash: This code displays data relevant (directory)
  * Return: Error message
  */
 char *error_get_cd(data_shell *datash)
@@ -78,8 +78,8 @@ char *error_get_cd(data_shell *datash)
 }
 
 /**
- * error_not_found - generic error message for command not found
- * @datash: data relevant (counter, arguments)
+ * error_not_found - This displays generic error message for command not found
+ * @datash: this displays data relevant (counter, arguments)
  * Return: Error message
  */
 char *error_not_found(data_shell *datash)
@@ -110,8 +110,8 @@ char *error_not_found(data_shell *datash)
 }
 
 /**
- * error_exit_shell - generic error message for exit in get_exit
- * @datash: data relevant (counter, arguments)
+ * error_exit_shell - This displays generic error message for exit in get_exit
+ * @datash: this displays data relevant (counter, arguments)
  *
  * Return: Error message
  */
