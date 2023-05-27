@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
- * exec_line - finds builtins and commands
+ * exec_line - It helps to find commands and builtins.
  *
- * @datash: data relevant (args)
- * Return: 1 on success.
+ * @datash: Arguments (relevant data)
+ * Return: 1 if successful.
  */
 int exec_line(data_shell *datash)
 {

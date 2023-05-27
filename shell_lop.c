@@ -1,53 +1,52 @@
 #include "main.h"
-
 /**
- * without_comment - deletes comments from the input
+ * without_comment - Helps to remove(delete) comments from the input.
  *
- * @in: input string
- * Return: input without comments
+ * @a: The Input Str.
+ * Return: any input without comments.
  */
-char *without_comment(char *in)
+char *without_comment(char *a)
 {
-	int i, up_to;
+	int x, upto;
 
-	up_to = 0;
-	for (i = 0; in[i]; i++)
+	upto = 0;
+	for (x = 0; a[x]; x++)
 	{
-		if (in[i] == '#')
+		if (a[x] == '#')
 		{
-			if (i == 0)
+			if (x == 0)
 			{
-				free(in);
+				free(a);
 				return (NULL);
 			}
 
-			if (in[i - 1] == ' ' || in[i - 1] == '\t' || in[i - 1] == ';')
-				up_to = i;
+			if (a[x - 1] == ' ' || a[x - 1] == '\t' || a[x - 1] == ';')
+				upto = x;
 		}
 	}
 
-	if (up_to != 0)
+	if (upto != 0)
 	{
-		in = _realloc(in, i, up_to + 1);
-		in[up_to] = '\0';
+		a = _realloc(a, x, upto + 1);
+		a[upto] = '\0';
 	}
 
-	return (in);
+	return (a);
 }
 
 /**
- * shell_loop - Loop of shell
- * @datash: data relevant (av, input, args)
+ * shell_loop - That is Loop of The shell.
+ * @datash: av, input, args(data relevant)
  *
- * Return: no return.
+ * Return: nothing
  */
 void shell_loop(data_shell *datash)
 {
-	int loop, i_eof;
+	int loope, i_eof;
 	char *input;
 
-	loop = 1;
-	while (loop == 1)
+	loope = 1;
+	while (loope == 1)
 	{
 		write(STDIN_FILENO, "^-^ ", 4);
 		input = read_line(&i_eof);
@@ -57,13 +56,13 @@ void shell_loop(data_shell *datash)
 			if (input == NULL)
 				continue;
 			input = rep_var(input, datash);
-			loop = split_commands(datash, input);
+			loope = split_commands(datash, input);
 			datash->counter += 1;
 			free(input);
 		}
 		else
 		{
-			loop = 0;
+			loope = 0;
 			free(input);
 		}
 	}

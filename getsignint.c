@@ -1,8 +1,7 @@
 #include "main.h"
-
 /**
- * get_sigint - Handle the crtl + c call in prompt
- * @sig: Signal handler
+ * get_sigint - Helps to Handle the crtl + c prompt
+ * @sig: The handler of the signal.
  */
 void get_sigint(int sig)
 {

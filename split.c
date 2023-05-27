@@ -1,72 +1,71 @@
 #include "main.h"
-
 /**
- * swap_char - swaps | and & for non-printed chars
+ * swap_char - Helps to swaps | and & for unprinted chars.
  *
- * @input: input string
- * @bool: type of swap
- * Return: swapped string
+ * @input: The Input str.
+ * @bool: The typ of Swap.
+ * Return: already swapped str.
  */
 char *swap_char(char *input, int bool)
 {
-	int i;
+	int j;
 
 	if (bool == 0)
 	{
-		for (i = 0; input[i]; i++)
+		for (j = 0; input[j]; j++)
 		{
-			if (input[i] == '|')
+			if (input[j] == '|')
 			{
-				if (input[i + 1] != '|')
-					input[i] = 16;
+				if (input[j + 1] != '|')
+					input[j] = 16;
 				else
-					i++;
+					j++;
 			}
 
-			if (input[i] == '&')
+			if (input[j] == '&')
 			{
-				if (input[i + 1] != '&')
-					input[i] = 12;
+				if (input[j + 1] != '&')
+					input[j] = 12;
 				else
-					i++;
+					j++;
 			}
 		}
 	}
 	else
 	{
-		for (i = 0; input[i]; i++)
+		for (j = 0; input[j]; j++)
 		{
-			input[i] = (input[i] == 16 ? '|' : input[i]);
-			input[i] = (input[i] == 12 ? '&' : input[i]);
+			input[j] = (input[j] == 16 ? '|' : input[j]);
+			input[j] = (input[j] == 12 ? '&' : input[j]);
 		}
 	}
 	return (input);
 }
 
 /**
- * add_nodes - add separators and command lines in the lists
+ * add_nodes - It Add separators & command lines in d lists.
  *
- * @head_s: head of separator list
- * @head_l: head of command lines list
- * @input: input string
- * Return: no return
+ * @head_s: The Head of The separat list.
+ * @head_l: HEAD of the command line lists.
+ * @input: the Input str.
+ * Return: nothing
  */
 void add_nodes(sep_list **head_s, line_list **head_l, char *input)
 {
-	int i;
+	int b;
 	char *line;
 
 	input = swap_char(input, 0);
 
-	for (i = 0; input[i]; i++)
+	for (b = 0; input[b]; b++)
 	{
-		if (input[i] == ';')
-			add_sep_node_end(head_s, input[i]);
+		if (input[b] == ';')
+			add_sep_node_end(head_s, input[b]);
 
-		if (input[i] == '|' || input[i] == '&')
+		if (input[b] == '|' || input[b] == '&')
 		{
-			add_sep_node_end(head_s, input[i]);
-			i++;
+			add_sep_node_end(head_s, input[b]);
+			b++;
 		}
 	}
 
@@ -80,18 +79,18 @@ void add_nodes(sep_list **head_s, line_list **head_l, char *input)
 }
 
 /**
- * go_next - go to the next command line stored
+ * go_next - Helps go to next stored command line.
  *
- * @list_s: separator list
- * @list_l: command line list
- * @datash: data structure
- * Return: no return
+ * @list_s: The Separator list.
+ * @list_l: The Command Line List.
+ * @datash: the Data struct.
+ * Return: nothing
  */
 void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 {
-	int loop_sep;
 	sep_list *ls_s;
 	line_list *ls_l;
+	int loop_sep;
 
 	loop_sep = 1;
 	ls_s = *list_s;
@@ -122,19 +121,19 @@ void go_next(sep_list **list_s, line_list **list_l, data_shell *datash)
 }
 
 /**
- * split_commands - splits command lines according to
- * the separators ;, | and &, and executes them
+ * split_commands - It divides (splits) command lines according to
+ * their separators ;, | and &, and execute them all
  *
- * @datash: data structure
- * @input: input string
- * Return: 0 to exit, 1 to continue
+ * @datash: The Data struct.
+ * @input: The Input str.
+ * Return: 0 to exit, and  1 to continue...
  */
 int split_commands(data_shell *datash, char *input)
 {
 
-	sep_list *head_s, *list_s;
 	line_list *head_l, *list_l;
 	int loop;
+	sep_list *head_s, *list_s;
 
 	head_s = NULL;
 	head_l = NULL;
@@ -169,17 +168,17 @@ int split_commands(data_shell *datash, char *input)
 }
 
 /**
- * split_line - tokenizes the input string
+ * split_line - This helps to tokenize the input str.
  *
- * @input: input string.
- * Return: string splitted.
+ * @input: The Input str.
+ * Return: The string (tokenized)splitted.
  */
 char **split_line(char *input)
 {
 	size_t bsize;
-	size_t i;
 	char **tokens;
 	char *token;
+	size_t x;
 
 	bsize = TOK_BUFSIZE;
 	tokens = malloc(sizeof(char *) * (bsize));
@@ -192,12 +191,12 @@ char **split_line(char *input)
 	token = _strtok(input, TOK_DELIM);
 	tokens[0] = token;
 
-	for (i = 1; token != NULL; i++)
+	for (x = 1; token != NULL; x++)
 	{
-		if (i == bsize)
+		if (x == bsize)
 		{
 			bsize += TOK_BUFSIZE;
-			tokens = _reallocdp(tokens, i, sizeof(char *) * bsize);
+			tokens = _reallocdp(tokens, x, sizeof(char *) * bsize);
 			if (tokens == NULL)
 			{
 				write(STDERR_FILENO, ": allocation error\n", 18);
@@ -205,7 +204,7 @@ char **split_line(char *input)
 			}
 		}
 		token = _strtok(NULL, TOK_DELIM);
-		tokens[i] = token;
+		tokens[x] = token;
 	}
 
 	return (tokens);
