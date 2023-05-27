@@ -109,7 +109,7 @@ int is_executable(data_shell *datash)
 
 	if (stat(input + j, &st) == 0)
 	{
-		return (i);
+		return (j);
 	}
 	get_error(datash, 127);
 	return (-1);
@@ -192,7 +192,7 @@ int cmd_exec(data_shell *datash)
 	else
 	{
 		do {
-			wpid = waitpid(pd, &state, WUNTRACED);
+			wpid = waitpid(pid, &state, WUNTRACED);
 		} while (!WIFEXITED(state) && !WIFSIGNALED(state));
 	}
 

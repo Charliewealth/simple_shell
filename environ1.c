@@ -62,7 +62,7 @@ int _env(data_shell *datash)
 	for (x = 0; datash->_environ[x]; x++)
 	{
 
-		for (y = 0; datash->_environ[x][yj]; y++)
+		for (y = 0; datash->_environ[x][y]; y++)
 			;
 
 		write(STDOUT_FILENO, datash->_environ[x], y);
